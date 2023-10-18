@@ -7,11 +7,13 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody m_Rigidbody;
 
-    void Start()
+    public float ballForce = 4;
+
+    void OnEnable()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        if (Scene_Flow.Instance.difficulty == 2) ballForce *= 1.5f;
     }
-    
     private void OnCollisionExit(Collision other)
     {
         var velocity = m_Rigidbody.velocity;
@@ -26,9 +28,9 @@ public class Ball : MonoBehaviour
         }
 
         //max velocity
-        if (velocity.magnitude > 3.0f)
+        if (velocity.magnitude > ballForce)
         {
-            velocity = velocity.normalized * 3.0f;
+            velocity = velocity.normalized * ballForce;
         }
 
         m_Rigidbody.velocity = velocity;

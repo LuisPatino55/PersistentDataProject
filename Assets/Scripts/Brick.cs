@@ -10,6 +10,8 @@ public class Brick : MonoBehaviour
     
     public int PointValue;
 
+    private int hp = 1;
+
     void Start()
     {
         var renderer = GetComponentInChildren<Renderer>();
@@ -31,13 +33,19 @@ public class Brick : MonoBehaviour
                 break;
         }
         renderer.SetPropertyBlock(block);
+        if (Scene_Flow.Instance.difficulty != 0) hp *= PointValue;
+
+       // else if (Scene_Flow.Instance.difficulty == 1) hp *= PointValue;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        onDestroyed.Invoke(PointValue);
-        
-        //slight delay to be sure the ball have time to bounce
-        Destroy(gameObject, 0.2f);
+        hp--;
+        if (hp <= 0)
+        {
+            onDestroyed.Invoke(PointValue);
+            //slight delay to be sure the ball have time to bounce
+            Destroy(gameObject, 0.2f);
+        }
     }
 }

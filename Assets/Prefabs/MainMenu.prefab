@@ -828,9 +828,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 4464491639329309887}
+        m_TargetAssemblyTypeName: Scene_Flow, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -849,6 +849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7272780117348000026}
+  - component: {fileID: 2787654536750215648}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -879,6 +880,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2787654536750215648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464491639329309887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a61a295f0487f4b82c0b52a213888b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4524459775737675913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1805,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Scene_Flow, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:

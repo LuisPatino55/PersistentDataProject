@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-enum Difficulty { easy, medium, hard }
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager Instance;
-
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -18,51 +11,17 @@ public class MainManager : MonoBehaviour
     public Text ScoreText;
     public Text HighScoreText;
     public GameObject GameOverText;
-    
+
+    private float ballForce = 2f;
+
+    public int m_Points;
+
     private bool m_Started = false;
-    private int m_Points;
     
     private bool m_GameOver = false;
 
-    Difficulty m_Difficulty = Difficulty.medium;
-
-    private void Awake()
+    private void OnEnable()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
-    {
-        if (!m_Started)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                m_Started = true;
-                float randomDirection = Random.Range(-1.0f, 1.0f);
-                Vector3 forceDir = new(randomDirection, 1, 0);
-                forceDir.Normalize();
-
-                Ball.transform.SetParent(null);
-                Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange); //change force for difficulty
-            }
-        }
-        else if (m_GameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  //fix here
-            }
-        }
-    }
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
 
@@ -77,20 +36,36 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        if (Scene_Flow.Instance.difficulty == 2) ballForce *= 3;
     }
-    public void ExitGame()
+    private void Update()
     {
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
+        if (!m_Started)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                m_Started = true;
+                float randomDirection = Random.Range(-1.0f, 1.0f);
+                Vector3 forceDir = new(randomDirection, 1, 0);
+                forceDir.Normalize();
+
+                Ball.transform.SetParent(null);
+                Ball.AddForce(forceDir * ballForce, ForceMode.VelocityChange); 
+            }
+        }
+        else if (m_GameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Scene_Flow.Instance.RestartMenu();
+            }
+        }
     }
 
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = $"Score: {m_Points}";
     }
 
     public void GameOver()
