@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class MainManager : MonoBehaviour
@@ -9,16 +10,17 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
-    public Text HighScoreText;
+    public TextMeshProUGUI HighScoreText;
     public GameObject GameOverText;
+    public GameObject highScoreEntryBox;
 
     private float ballForce = 2f;
 
     public int m_Points;
 
     private bool m_Started = false;
-    
     private bool m_GameOver = false;
+    private bool m_ResetKey = false;
 
     private void OnEnable()
     {
@@ -37,6 +39,9 @@ public class MainManager : MonoBehaviour
             }
         }
         if (Scene_Flow.Instance.difficulty == 2) ballForce *= 3;
+        PrintHighScores();
+        ScoreText.gameObject.SetActive(true);
+        HighScoreText.gameObject.SetActive(true);
     }
     private void Update()
     {
@@ -44,6 +49,8 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                ScoreText.gameObject.SetActive(false);
+                HighScoreText.gameObject.SetActive(false);
                 m_Started = true;
                 float randomDirection = Random.Range(-1.0f, 1.0f);
                 Vector3 forceDir = new(randomDirection, 1, 0);
@@ -53,7 +60,7 @@ public class MainManager : MonoBehaviour
                 Ball.AddForce(forceDir * ballForce, ForceMode.VelocityChange); 
             }
         }
-        else if (m_GameOver)
+        else if (m_GameOver && m_ResetKey)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -71,6 +78,31 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+        ScoreText.gameObject.SetActive(true);
+        HighScoreText.gameObject.SetActive(true);
+
+        if (m_Points > Scene_Flow.Instance.highScores[4].score) highScoreEntryBox.SetActive(true);
+        
+        else GameReset();
+    }
+    public void RecordScore(string name)
+    {
+        Scene_Flow.Instance.SetHighScore(m_Points, name);
+        GameReset();
+        PrintHighScores();
+    }
+    private void GameReset()
+    {
+        highScoreEntryBox.SetActive(false);
+        m_ResetKey = true;
         GameOverText.SetActive(true);
+    }
+    private void PrintHighScores()
+    {
+        ScoreText.text = "\n";
+        foreach (Scores entry in Scene_Flow.Instance.highScores)
+        {
+            ScoreText.text = entry.score + "        " + entry.name + "\n";
+        }
     }
 }

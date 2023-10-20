@@ -4,18 +4,27 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public struct Scores
+{
+    public int score;
+    public string name;
+}
 
 public class Scene_Flow : MonoBehaviour
 {
-    public static Scene_Flow Instance;
+    public static Scene_Flow Instance;      // for singelton instance
 
     public int difficulty = 0;
 
-    public Dictionary<int, string> highScores = new();
+    public List<Scores> highScores = new()
+    {
+    new Scores { score = 0, name = "" },
+    };
+
 
     private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null)               // singleton pattern
         {
             Destroy(gameObject);
             return;
@@ -27,27 +36,21 @@ public class Scene_Flow : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    public void SetHighScore(int score, string name)
+
+    public void SetHighScore(int newScore, string newName)
     {
-        if (highScores.Count < 5) EnterScore();
-        else
+        int index = 0;
+
+        foreach (Scores highscore in highScores)
         {
-            foreach (int key in highScores.Keys)
+           if (newScore >= highscore.score)
             {
-                if (key <= score)
-                {
-                    
-                }
+                Scores newScoreEntry = new() { score = newScore, name = newName };
+                highScores.Insert(index, newScoreEntry);
+                if (highScores.Count >= 6) highScores.RemoveAt(6);
+                break;
             }
+           index++;
         }
-
-
     }
-    private void EnterScore()
-    {
-
-
-
-    }
-
 }
