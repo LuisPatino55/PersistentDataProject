@@ -16,7 +16,7 @@ public class Brick : MonoBehaviour
     {
         var renderer = GetComponentInChildren<Renderer>();
 
-        MaterialPropertyBlock block = new MaterialPropertyBlock();
+        MaterialPropertyBlock block = new();
         switch (PointValue)
         {
             case 1 :
@@ -33,7 +33,7 @@ public class Brick : MonoBehaviour
                 break;
         }
         renderer.SetPropertyBlock(block);
-        if (Scene_Flow.Instance.difficulty != 0) hp *= PointValue;
+        if (Scene_Flow.Instance.currentDifficulty != Difficulty.Easy) hp *= PointValue;
 
        // else if (Scene_Flow.Instance.difficulty == 1) hp *= PointValue;
     }

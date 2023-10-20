@@ -12,7 +12,10 @@ public class Ball : MonoBehaviour
     void OnEnable()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        if (Scene_Flow.Instance.difficulty == 2) ballForce *= 1.5f;
+    }
+    private void Start()
+    {
+        if (Scene_Flow.Instance.currentDifficulty == Difficulty.Hard) ballForce *= 1.5f;
     }
     private void OnCollisionExit(Collision other)
     {

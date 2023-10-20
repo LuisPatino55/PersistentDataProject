@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-        difficultyText.text = "Difficulty: " + Scene_Flow.Instance.difficulty;
+        difficultyText.text = "Difficulty: " + Scene_Flow.Instance.currentDifficulty;
     }
     public void DifficultyMenuOn()
     {
@@ -38,13 +38,11 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
 #endif
     }
-
-
     public void DifficultyChoice(int difficulty)
     {
-        Scene_Flow.Instance.difficulty = difficulty;
+        Scene_Flow.Instance.currentDifficulty = (Difficulty)difficulty;
         mainButtons.SetActive(true);
         difficultyButtons.SetActive(false);
-        difficultyText.text = "Difficlty: " + Scene_Flow.Instance.difficulty;
+        difficultyText.text = "Difficulty: " + Scene_Flow.Instance.currentDifficulty;
     }
 }

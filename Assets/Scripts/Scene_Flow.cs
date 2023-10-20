@@ -8,13 +8,20 @@ public struct Scores
 {
     public int score;
     public string name;
+    public Difficulty difficulty;
+}
+public enum Difficulty
+{
+    Easy = 0, 
+    Medium = 1,
+    Hard = 2,
 }
 
 public class Scene_Flow : MonoBehaviour
 {
     public static Scene_Flow Instance;      // for singelton instance
 
-    public int difficulty = 0;
+    public Difficulty currentDifficulty = Difficulty.Easy;
 
     public List<Scores> highScores = new()
     {
@@ -45,9 +52,10 @@ public class Scene_Flow : MonoBehaviour
         {
            if (newScore >= highscore.score)
             {
-                Scores newScoreEntry = new() { score = newScore, name = newName };
+                Scores newScoreEntry = new() { score = newScore, name = newName, difficulty = currentDifficulty };
+                Debug.Log("New entry created: " + newScoreEntry.name + "   Score: " + newScoreEntry.score + "  Difficulty Setting: " + newScoreEntry.difficulty + "  index: " + index);
                 highScores.Insert(index, newScoreEntry);
-                if (highScores.Count >= 6) highScores.RemoveAt(6);
+                if (highScores.Count >= 6) highScores.RemoveAt(5);
                 break;
             }
            index++;
