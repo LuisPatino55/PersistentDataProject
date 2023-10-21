@@ -131,74 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 796799379}
     m_Modifications:
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 376020583}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DifficultyChoice
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1304533404601117302, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1623363064667718556, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3747429784954739334, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 376020583}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DifficultyChoice
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365210982539905680, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4464491639329309887, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -293,17 +225,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7272780117348000026, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
   m_PrefabInstance: {fileID: 376020581}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &376020583 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2787654536750215648, guid: 8448cfa1301b29a41a36df859abd9819, type: 3}
-  m_PrefabInstance: {fileID: 376020581}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a61a295f0487f4b82c0b52a213888b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &796799375
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4540cf1c5eaf441953cbeef8adc98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
+  currentDifficulty: 0
 --- !u!1 &1723334815
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class Scene_Flow : MonoBehaviour
 
     public List<Scores> highScores = new()
     {
-    new Scores { score = 0, name = "" },
+        new Scores { score = 0, name = "  ", difficulty = Difficulty.Easy },
     };
 
 

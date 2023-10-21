@@ -1,43 +1,42 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 using System.Xml;
 using System.Xml.Serialization;
-using System.Text;
+
 
 public class DataManager : MonoBehaviour
 {
     private string _dataPath;
-    private string _xmlDifficulty;
     private string _xmlScores;
 
     void Awake()
     {
         _dataPath = Application.persistentDataPath + "/Player_Data/";
-        Debug.Log(_dataPath);
-        _xmlDifficulty = _dataPath + "Difficulty.xml";
         _xmlScores = _dataPath + "HighScoreList.xml";
+        Debug.Log(_dataPath);
     }
-    private void FilesystemInfo()
+    private void Start()
     {
-        Debug.LogFormat("Path separator character: {0}", Path.PathSeparator);
-        Debug.LogFormat("Directory separator character: {0}", Path.DirectorySeparatorChar);
-        Debug.LogFormat("Current directory: {0}", Directory.GetCurrentDirectory());
-        Debug.LogFormat("Temporary path: {0}", Path.GetTempPath());
+        NewDirectory();
     }
-    public void NewDirectory()
+
+    public void NewDirectory()              // creates save directory if it doesn't exist
     {
         if (Directory.Exists(_dataPath))
         {
-            Debug.Log("Directory already exists...");
-            return;
+            Debug.Log("Save directory already exists...");
+            LoadData(_xmlScores);         // calls the load data method
         }
-        Directory.CreateDirectory(_dataPath);
-        Debug.Log("New directory created!");
+        else
+        {
+            Directory.CreateDirectory(_dataPath);
+            Debug.Log("New save directory created!");
+            NewDirectory();
+        }
     }
-    public void DeleteDirectory()
+
+    public void DeleteDirectory()           // should you ever need to delete the directory
     {
         if (!Directory.Exists(_dataPath))
         {
@@ -47,41 +46,42 @@ public class DataManager : MonoBehaviour
         Directory.Delete(_dataPath, true);
         Debug.Log("Directory sucessfully deleted!");
     }
-    public void WriteToXML(string filename)
+    private void LoadData(string filename)
     {
-        if (!File.Exists(filename))
+        if (File.Exists(filename)) DeserializeXML(filename);   //load data if save file exists
+
+        else                                                   // otherwise make new file
         {
             FileStream xmlStream = File.Create(filename);
             XmlWriter xmlWriter = XmlWriter.Create(xmlStream);
             xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("level_progress");
-            for (int i = 1; i < 5; i++)
-            {
-                xmlWriter.WriteElementString("level", "Level-" + i);
-            }
+            xmlWriter.WriteStartElement("Game_Settings_And_High_Score");
             xmlWriter.WriteEndElement();
             xmlWriter.Close();
             xmlStream.Close();
+            Debug.Log("New game save file created ");
+            SerializeXML(filename);                        // then save default data
         }
     }
-    public void SerializeXML()
+    public void SerializeXML(string filename)       // saves high score list to XML
     {
         var xmlSerializer = new XmlSerializer(typeof(List<Scores>));
-        using FileStream stream = File.Create(_xmlScores);
+        using FileStream stream = File.Create(filename);
         xmlSerializer.Serialize(stream, Scene_Flow.Instance.highScores);
+        Debug.Log("Game data saved!");
     }
-    public void DeserializeXML(string file)
+    public void DeserializeXML(string file)         // loads data to high score list
     {
         if (File.Exists(file))
         {
             var xmlSerializer = new XmlSerializer(typeof(List<Scores>));
             using FileStream stream = File.OpenRead(file);
-            var weapons = (List<Scores>)xmlSerializer.Deserialize(stream);
-            foreach (var weapon in weapons)
+            var Scores = (List<Scores>)xmlSerializer.Deserialize(stream);
+            foreach (var score in Scores)
             {
-                Debug.LogFormat("Weapon: {0} - Damage: {1}");
+                Debug.LogFormat("Weapon: {0} - Damage: {1}");  // create a list item...
             }
-        }
+            Debug.Log("Game data loaded!");
+        }   
     }
-
 }

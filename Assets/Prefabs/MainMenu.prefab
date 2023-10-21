@@ -415,7 +415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6301405592791002610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -560,13 +560,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4464491639329309887}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2787654536750215648}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: DifficultyChoice
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -855,7 +855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8918174530275885080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1021,6 +1021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7272780117348000026}
   - component: {fileID: 2787654536750215648}
+  - component: {fileID: 5066500116153664790}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1066,6 +1067,18 @@ MonoBehaviour:
   mainButtons: {fileID: 1623363064667718556}
   difficultyButtons: {fileID: 3747429784954739334}
   difficultyText: {fileID: 3345789162527162000}
+--- !u!114 &5066500116153664790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464491639329309887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a36ad5055a2a7847991bc37d8f2c888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4524459775737675913
 GameObject:
   m_ObjectHideFlags: 0
