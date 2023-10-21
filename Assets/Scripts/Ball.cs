@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
     }
     private void Start()
     {
-        if (Scene_Flow.Instance.currentDifficulty == Difficulty.Hard) ballForce *= 1.5f;
+        if (Scene_Flow.Instance.currentDifficulty == Difficulty.Hard) ballForce *= 1.5f;    //adjust ball speed for difficulty
     }
     private void OnCollisionExit(Collision other)
     {

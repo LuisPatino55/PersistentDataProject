@@ -33,14 +33,12 @@ public class Brick : MonoBehaviour
                 break;
         }
         renderer.SetPropertyBlock(block);
-        if (Scene_Flow.Instance.currentDifficulty != Difficulty.Easy) hp *= PointValue;
-
-       // else if (Scene_Flow.Instance.difficulty == 1) hp *= PointValue;
+        if (Scene_Flow.Instance.currentDifficulty != Difficulty.Easy) hp *= PointValue; // gives bricks HP according to point value if difficulty is above easy 
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        hp--;
+        hp--;       // reduce HP and destoy / give points when HP is 0
         if (hp <= 0)
         {
             onDestroyed.Invoke(PointValue);

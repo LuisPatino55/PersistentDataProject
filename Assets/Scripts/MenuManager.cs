@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -7,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject mainButtons;
-    public GameObject difficultyButtons;
+    public GameObject mainButtons;      //main menu
+    public GameObject difficultyButtons; // difficulty menu
     public TextMeshProUGUI difficultyText;
 
-    private void OnEnable()
+    private void OnEnable()             // all ths stuff is pretty basic, so i won't get into it
     {
         mainButtons.SetActive(true);
         difficultyButtons.SetActive(false);
@@ -38,7 +36,7 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
 #endif
     }
-    public void DifficultyChoice(int difficulty)
+    public void DifficultyChoice(int difficulty)    // i can't remember why I used an int for difficulty here, but those are set when I declared the struct. 
     {
         Scene_Flow.Instance.currentDifficulty = (Difficulty)difficulty;
         mainButtons.SetActive(true);
