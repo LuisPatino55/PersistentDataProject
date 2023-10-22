@@ -36,11 +36,15 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
 #endif
     }
-    public void DifficultyChoice(int difficulty)    // i can't remember why I used an int for difficulty here, but those are set when I declared the struct. 
+    public void DifficultyChoice(int difficulty)    // using int so it works with player prefs 
     {
-        Scene_Flow.Instance.currentDifficulty = (Difficulty)difficulty;
+        Scene_Flow.Instance.SaveDifficulty(difficulty);
         mainButtons.SetActive(true);
         difficultyButtons.SetActive(false);
+        DifficultyUI();
+    }
+    public void DifficultyUI()
+    {
         difficultyText.text = "Difficulty: " + Scene_Flow.Instance.currentDifficulty;
     }
 }

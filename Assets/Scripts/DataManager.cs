@@ -18,59 +18,39 @@ public class DataManager : MonoBehaviour
     }
     private void Start()
     {
-        NewDirectory();
+        if (Directory.Exists(_dataPath)) LoadData(_xmlScores);
+        else NewDirectory();
     }
 
-    public void NewDirectory()              // creates save directory if it doesn't exist
+    private void NewDirectory()              // creates save directory
     {
-        if (Directory.Exists(_dataPath))
+        Directory.CreateDirectory(_dataPath);
+        Debug.Log("New save directory created!");
+        LoadData(_xmlScores);
+    }
+
+
+    private void LoadData(string filename)
+    {
+        if (File.Exists(filename))
         {
-            Debug.Log("Save directory already exists...");
-            LoadData(_xmlScores);         // calls the load data method
+            Debug.Log("Save file found, loading...");
+            DeserializeXML(filename);   //load data if save file exists
         }
         else
         {
-            Directory.CreateDirectory(_dataPath);
-            Debug.Log("New save directory created!");
-            NewDirectory();
+            Debug.Log("New xml save file created!");
+            SerializeXML(filename);     // otherwise create a new xml file
         }
     }
-
-    public void DeleteDirectory()           // should you ever need to delete the directory
-    {
-        if (!Directory.Exists(_dataPath))
-        {
-            Debug.Log("Directory doesn't exist or has already been deleted...");
-            return;
-        }
-        Directory.Delete(_dataPath, true);
-        Debug.Log("Directory sucessfully deleted!");
-    }
-    private void LoadData(string filename)
-    {
-        if (File.Exists(filename)) DeserializeXML(filename);   //load data if save file exists
-
-        else                                                   // otherwise make new file
-        {
-            FileStream xmlStream = File.Create(filename);
-            XmlWriter xmlWriter = XmlWriter.Create(xmlStream);
-            xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("Game_Settings_And_High_Score");
-            xmlWriter.WriteEndElement();
-            xmlWriter.Close();
-            xmlStream.Close();
-            Debug.Log("New game save file created ");
-            SerializeXML(filename);                        // then save default data
-        }
-    }
-    public void SerializeXML(string filename)       // saves high score list to XML
+    private void SerializeXML(string filename)       // overwrites new high score list to XML file (creates a file if none exists)
     {
         var xmlSerializer = new XmlSerializer(typeof(List<Scores>));
         using FileStream stream = File.Create(filename);
         xmlSerializer.Serialize(stream, Scene_Flow.Instance.highScores);
         Debug.Log("Game data saved!");
     }
-    public void DeserializeXML(string file)         // loads data to high score list
+    private void DeserializeXML(string file)         // loads data to high score list
     {
         if (File.Exists(file))
         {
@@ -79,9 +59,14 @@ public class DataManager : MonoBehaviour
             var Scores = (List<Scores>)xmlSerializer.Deserialize(stream);
             foreach (var score in Scores)
             {
-                Debug.LogFormat("Weapon: {0} - Damage: {1}");  // create a list item...
+                Debug.LogFormat("High Score: {0}   by: {1}   difficulty: {2}", score.score, score.name, score.difficulty);  // create a list item...
             }
             Debug.Log("Game data loaded!");
         }   
+    }
+
+    public void SaveData()
+    {
+        SerializeXML(_xmlScores);
     }
 }

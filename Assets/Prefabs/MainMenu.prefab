@@ -1021,7 +1021,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7272780117348000026}
   - component: {fileID: 2787654536750215648}
-  - component: {fileID: 5066500116153664790}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1067,18 +1066,6 @@ MonoBehaviour:
   mainButtons: {fileID: 1623363064667718556}
   difficultyButtons: {fileID: 3747429784954739334}
   difficultyText: {fileID: 3345789162527162000}
---- !u!114 &5066500116153664790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464491639329309887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a36ad5055a2a7847991bc37d8f2c888, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4524459775737675913
 GameObject:
   m_ObjectHideFlags: 0
